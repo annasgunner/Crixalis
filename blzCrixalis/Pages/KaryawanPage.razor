@@ -1,0 +1,29 @@
+﻿@page "/karyawan"
+@inherits LayoutComponentBase
+@using Radzen
+@using Radzen.Blazor
+@using libsCrixalis.Master
+@using blzCrixalis.Services
+@using Mapster
+@inject KaryawanService karyawanService
+
+<div>
+    <RadzenDataGrid @ref="grid" AllowFiltering="true" AllowColumnResize="true" FilterMode="FilterMode.Advanced" AllowSorting="true" PageSize="5" AllowPaging="true" PagerHorizontalAlign="HorizontalAlign.Left" ShowPagingSummary="true"
+        Data="@t1Karyawans" TItem="DbT1Karyawan" ColumnWidth="300px" LogicalFilterOperator="LogicalFilterOperator.Or">
+        <Columns>
+            <RadzenDataGridColumn TItem="DbT1Karyawan" Property="IdKaryawan" Filterable="false" Title="ID" Frozen="true" Width="80px" TextAlign="TextAlign.Center" />
+            <RadzenDataGridColumn TItem="DbT1Karyawan" Property="NamaLengkap" Title="Nama Lengkap" Frozen="true" Width="160px" />
+            <RadzenDataGridColumn TItem="DbT1Karyawan" Property="NamaPanggilan" Title="Nama Panggilan" Width="160px"/>
+            <RadzenDataGridColumn TItem="DbT1Karyawan" Property="Alamat Tinggal" Title="Alamat" Width="200px" />
+        </Columns>
+    </RadzenDataGrid>
+</div>
+@code {
+    List<DbT1Karyawan> t1Karyawans;
+    RadzenDataGrid<DbT1Karyawan> grid;
+
+    protected override async void OnInitialized()
+    {
+        t1Karyawans = (await karyawanService.GetAllKaryawan()).Adapt<List<DbT1Karyawan>>();
+    }
+}

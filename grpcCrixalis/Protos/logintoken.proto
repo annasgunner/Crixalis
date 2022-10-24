@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+option csharp_namespace = "grpcCrixalis.Protos";
+package LoginToken;
+
+// Definisikan Login service.
+service proLoginToken {
+  rpc GetLoginToken (LoginTokenRequest) returns (LoginToken);
+}
+// Parameter untuk Request
+message LoginTokenRequest {
+  string UserName = 1;
+  string UserPassword = 2;
+}
+// The response message 
+message LoginToken {
+  string Message = 1;
+  string Token = 2;
+  string IdKaryawan = 3;
+  string NamaLengkap = 4;
+  string NamaPanggilan = 5;
+}

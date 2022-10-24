@@ -1,0 +1,22 @@
+{
+  "profiles": {
+    "grpcCrixalis": {
+      "commandName": "Project",
+      "dotnetRunMessages": "true",
+      "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}",
+      "applicationUrl": "https://localhost:5021;http://*:5050",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    } //,
+    //"WSL": {
+    //  "commandName": "WSL2",
+    //  "launchUrl": "https://localhost:5001",
+    //  "environmentVariables": {
+    //    "ASPNETCORE_ENVIRONMENT": "Development",
+    //    "ASPNETCORE_URLS": "https://localhost:5001;https://*:8080"
+    //  },
+    //  "distributionName": ""
+    //}
+  }
+}

@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option csharp_namespace = "grpcCrixalis.Protos";
+package ReadKaryawanPackage;
+
+// Definisikan Karyawan service.
+service WriteKaryawan {
+	rpc InsertKaryawan (WriteKaryawanRequest) returns (WriteKaryawanReply);
+	rpc UpdateKaryawan (WriteKaryawanRequest) returns (WriteKaryawanReply);
+	rpc DeleteKaryawan (WriteKaryawanByIdRequest) returns (WriteKaryawanReply);
+}
+
+message WriteKaryawanRequest {
+  string IdKaryawan = 1;
+  string NamaLengkap = 2;
+  string NamaPanggilan = 3;
+  string Alamat = 4;
+}
+message WriteKaryawanByIdRequest {
+  string IdKaryawan = 1;
+}
+
+message WriteKaryawanReply {
+	bool IsOK = 1;
+	string Result = 2;
+}

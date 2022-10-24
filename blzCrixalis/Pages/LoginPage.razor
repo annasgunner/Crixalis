@@ -1,0 +1,32 @@
+﻿@inherits LayoutComponentBase
+@using Radzen
+@using Radzen.Blazor
+@using blzCrixalis.Services
+@inject LoginService loginService
+@inject NavigationManager NavManager
+
+<div class="page">
+    <main>
+        <div class="container-fluid">
+            <div class="row d-flex px-3">
+                <div class="col-xl-6 d-flex p-3">
+                    <RadzenCard Style="width: 100%;">
+                        <RadzenTemplateForm Data=@("SimpleLogin")>
+                            <RadzenLogin AllowRegister="false" AllowResetPassword="false" Login=@(args => OnLogin(args, "Simple login")) />
+                        </RadzenTemplateForm>
+                    </RadzenCard>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+@code {
+    public async void OnLogin(LoginArgs args, string name)
+    {
+        var hasil = await loginService.Login(args.Username, args.Password);
+        if (hasil != null)
+        {
+            NavManager.NavigateTo("karyawan");
+        }
+    }
+}

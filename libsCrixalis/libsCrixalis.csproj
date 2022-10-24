@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Protos\LoginToken.proto" />
+    <None Remove="Protos\ReadKaryawan.proto" />
+    <None Remove="Protos\WriteKaryawan.proto" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.21.8" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.49.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.50.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.10" />
+    <PackageReference Include="NewId" Version="3.0.3" />
+    <PackageReference Include="protobuf-net.Grpc" Version="1.0.177" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Protobuf Include="Protos\LoginToken.proto" />
+    <Protobuf Include="Protos\ReadKaryawan.proto" />
+    <Protobuf Include="Protos\WriteKaryawan.proto" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<SupportedPlatform Include="browser"></SupportedPlatform>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Pantheon">
+      <HintPath>..\..\..\..\MyProject\MAUI\Pantheon\Pantheon\bin\Debug\net6.0\Pantheon.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

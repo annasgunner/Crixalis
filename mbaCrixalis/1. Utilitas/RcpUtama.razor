@@ -1,0 +1,32 @@
+﻿@page "/"
+@using Microsoft.AspNetCore.Components
+@using rclPantheon.Utility
+@inherits PthRcpUtama
+
+@{
+	base.BuildRenderTree(__builder);
+}
+@code {
+    protected override async void OnInitialized() {
+        var components = Assembly.GetExecutingAssembly().ExportedTypes.Where(t => t.IsSubclassOf(typeof(ComponentBase))).ToList().Where(c => c.Namespace.Contains("Pages"));
+
+        var component = components.FirstOrDefault(r => r.Name == "Counter");
+        pathForm = component;
+        base.OnInitialized();
+    }
+    public override void Enter(KeyboardEventArgs e) {
+        var a = _text;
+        var b = _cbxCari_Text;
+        var ab = _text2;
+        base.Enter(e);
+        var c = _text;
+        var d = _cbxCari_Text;
+        var cd = _text2;
+    }
+    public override void cbxCari_TextChanged(string value)
+    {
+        //if (value.Length == 16 && value.Contains("-")) lrm = ListRenderMode.Entire;
+        //else lrm = ListRenderMode.Virtual;
+        base.cbxCari_TextChanged(value);
+    }
+}
