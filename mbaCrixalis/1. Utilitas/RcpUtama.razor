@@ -12,21 +12,16 @@
 
         var component = components.FirstOrDefault(r => r.Name == "Counter");
         pathForm = component;
+        var a = component.Attributes;
+        var b = component.GetMembers();
         base.OnInitialized();
     }
-    public override void Enter(KeyboardEventArgs e) {
-        var a = _text;
-        var b = _cbxCari_Text;
-        var ab = _text2;
-        base.Enter(e);
-        var c = _text;
-        var d = _cbxCari_Text;
-        var cd = _text2;
-    }
-    public override void cbxCari_TextChanged(string value)
+    public override void cbxCari_Enter(KeyboardEventArgs e)
     {
-        //if (value.Length == 16 && value.Contains("-")) lrm = ListRenderMode.Entire;
-        //else lrm = ListRenderMode.Virtual;
-        base.cbxCari_TextChanged(value);
+        base.cbxCari_Enter(e);
+    }
+    public override void cbxCari_OnInput(ChangeEventArgs e)
+    {
+        base.cbxCari_OnInput(e);
     }
 }
