@@ -18,7 +18,7 @@ namespace grpcCrixalis.Services
         {
             try
             {
-                var data = await _unitOfWork.RepoForm.CariDenganPredicate(f => f.Form != null || f.IdParent == 0);
+                var data = await _unitOfWork.RepoForm.CariDenganPredicate(f => (f.Form != null || f.IdParent == 0) && f.Status == true);
                 var reply = new rpfForm();
                 reply.DaftarForm.AddRange(data.Adapt<IEnumerable<proForm>>());
                 return reply;

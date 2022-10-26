@@ -1,16 +1,24 @@
 ﻿@page "/counter"
 
-<h1>Counter</h1>
-
-<p role="status">Current count: @currentCount</p>
-
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<DxFormLayout @ref="@base_fl" Id="base_fl">
+    <DxFormLayoutItem Id="lciNamaLengkap" Caption="Nama Lengkap:" ColSpanMd="12">
+        <DxTextBox Id="txbNamaLengkap" />
+    </DxFormLayoutItem>
+    <DxFormLayoutItem Id="lciNamaPanggilan" Caption="Nama Panggilan:" ColSpanMd="12">
+        <DxTextBox Id="txbNamaPanggilan" />
+    </DxFormLayoutItem>
+    <DxFormLayoutItem Id="lciAlamat" Caption="Alamat:" ColSpanMd="12">
+        <DxTextBox Id="txbAlamat" />
+    </DxFormLayoutItem>
+</DxFormLayout>
 
 @code {
+    DxFormLayout? base_fl { get; set; }
     private int currentCount = 0;
 
-    private void IncrementCount()
+    protected override void OnInitialized()
     {
-        currentCount++;
+        base.OnInitialized();
+        var h = base_fl?.ChildContent;
     }
 }
