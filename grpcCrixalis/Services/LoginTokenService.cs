@@ -41,7 +41,7 @@ namespace grpcCrixalis.Services
 
             try
             {
-                var user = _db.T1KaryawanDbSet
+                var user = _db.T1Karyawan
                               .Where(w => w.UserName == userName)
                               .Select(k => new
                               {
@@ -64,7 +64,7 @@ namespace grpcCrixalis.Services
                 }
                 _clsErrorHandling.CheckCancelRequest(context, _db);
 
-                var pass = _db.T1KaryawanDbSet
+                var pass = _db.T1Karyawan
                               .Where(w => w.UserName == userName &&
                                           w.UserPassword == userPassword)
                               .Select(k => new

@@ -2,6 +2,8 @@
 using mbaCrixalis._1__Utilitas;
 using mbaCrixalis._1._Utilitas;
 using Pantheon;
+using static Pantheon.Utility.modVariabel;
+using mbaCrixalis._1._Master;
 
 namespace mbaCrixalis;
 
@@ -9,6 +11,8 @@ public static class MauiProgram
 {
     public static MauiApp CreateMauiApp()
     {
+        AlamatAPI = "https://localhost:5021";
+
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
@@ -24,6 +28,7 @@ public static class MauiProgram
 #endif
 
         builder.Services.AddSingleton<csvForm>();
+        builder.Services.AddSingleton<csvJabatan>();
         //builder.Services.AddSingleton<pthSignalRService>();
         builder.Services.AddScoped<DialogService>();
         builder.Services.AddScoped<NotificationService>();

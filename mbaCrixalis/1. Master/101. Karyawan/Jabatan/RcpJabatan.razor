@@ -1,0 +1,65 @@
+﻿@using mbaCrixalis._1._Master
+@inherits ConMaster_1<uimT0Jabatan, csvJabatan>
+
+@{
+	base.BuildRenderTree(__builder);
+	rfDetil = 
+	@<div>
+        <DxFormLayout Data="@DsRekapitulasiDipilih">
+			<DxFormLayoutGroup @ref="Base_flgDetil" Id="flg">
+				<DxFormLayoutItem Caption="Jabatan" ColSpanMd="12">
+					<DxTextBox @ref="txbJabatan" @bind-Text="@DsRekapitulasiDipilih.Jabatan" />
+				</DxFormLayoutItem>
+				<DxFormLayoutItem Caption="Kode" ColSpanMd="12">
+					<DxTextBox @ref="txbKode" @bind-Text="@DsRekapitulasiDipilih.Kode" />
+				</DxFormLayoutItem>
+				<DxFormLayoutItem Caption="Grade" ColSpanMd="12">
+					<DxSpinEdit @ref="speGrade" @bind-Value="@DsRekapitulasiDipilih.Grade" />
+				</DxFormLayoutItem>
+				<DxFormLayoutItem Caption="Keterangan" ColSpanMd="12">
+					<DxTextBox @ref="txbKeterangan" @bind-Text="@DsRekapitulasiDipilih.Keterangan" />
+				</DxFormLayoutItem>
+			</DxFormLayoutGroup>
+		</DxFormLayout>
+	</div>;
+}
+@code {
+	DxTextBox txbJabatan { get; set; }
+	DxTextBox txbKode { get; set; }
+	DxTextBox txbKeterangan { get; set; }
+	DxSpinEdit<int?> speGrade { get; set; }
+
+	Type typeService { get; set; }
+	//[Inject]
+	//public csvJabatan csv { get; set; }
+
+	protected override void OnInitialized()
+	{
+		DsRekapitulasiDipilih = new();
+		IdForm = 20100010;
+		base.OnInitialized();
+	}
+	protected override void OnAfterRender(bool firstRender)
+	{
+		base.OnAfterRender(firstRender);
+	}
+	public override void ProsesPerbarui_Rekapitulasi()
+	{
+		base.ProsesPerbarui_Rekapitulasi();
+		//typeService = AssemblyProject.ExportedTypes.FirstOrDefault(et => et.Name.Substring(3) == Form?.Form && et.Name.Substring(0, 3) == "csv");
+		//MethodInfo mi = nameof(typeService).GetType().GetMethod($"GetData{Form?.Form}");
+		////mi.Invoke(nameof(typeService));
+
+		//DsRekapitulasi = csv.GetDataJabatan();
+		//StateHasChanged();
+	}
+
+	public override void ProsesSeleksiData(object data)
+	{
+		base.ProsesSeleksiData(data);
+	}
+	public override void ProsesMuat_Detil()
+	{
+		base.ProsesMuat_Detil();
+	}
+}

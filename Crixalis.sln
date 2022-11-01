@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "grpcCrixalis", "grpcCrixali
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "libsCrixalis", "libsCrixalis\libsCrixalis.csproj", "{5150EBBA-E0A0-41AC-AB4D-0167178ED65A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mbaCrixalis", "mbaCrixalis\mbaCrixalis.csproj", "{DBF6969E-0DED-4E94-9424-D5DEFA444B9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mbaCrixalis", "mbaCrixalis\mbaCrixalis.csproj", "{DBF6969E-0DED-4E94-9424-D5DEFA444B9D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

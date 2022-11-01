@@ -1,16 +1,101 @@
 ﻿@page "/counter"
+@inject IJSRuntime jsr
 
-<h1>Counter</h1>
-
-<p role="status">Current count: @currentCount</p>
-
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<DxFormLayout @ref="fl" Id="fl">
+    <DxFormLayoutGroup @ref="flg" Id="flg">
+        <Items>
+            <DxFormLayoutItem Id="lciNamaLengkap" Caption="Nama Lengkap:" ColSpanMd="12">
+                <DxTextBox @ref="txbNamaLengkap" Id="txbNamaLengkap" />
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Id="lciNamaPanggilan" Caption="Nama Panggilan:" ColSpanMd="12">
+                <DxTextBox @ref="txbNamaPanggilan" Id="txbNamaPanggilan" />
+            </DxFormLayoutItem>
+            <DxFormLayoutItem Id="lciAlamat" Caption="Alamat:" ColSpanMd="12">
+                <DxTextBox @ref="txbAlamat" Id="txbAlamat" />
+            </DxFormLayoutItem>
+        </Items>
+    </DxFormLayoutGroup>
+</DxFormLayout>
 
 @code {
+    DxFormLayout fl = new();
+    DxFormLayoutGroup flg = new();
+    DxTextBox txbNamaLengkap = new();
+    DxTextBox txbNamaPanggilan = new();
+    DxTextBox txbAlamat = new();
     private int currentCount = 0;
-
-    private void IncrementCount()
+    List<DxTextBox> listTxb { get; set; }
+    DxFormLayout base_flDetil = new();
+    List<object> listPar = new();
+    protected override void OnInitialized()
     {
-        currentCount++;
+        base.OnInitialized();
+
+    }
+    protected override async void OnAfterRender(bool firstRender)
+    {
+        base.OnAfterRender(firstRender);
+
+        var components = Assembly.GetExecutingAssembly().ExportedTypes.Where(t => t.IsSubclassOf(typeof(ComponentBase)));
+        var routes = components
+            .Select(component => GetRouteFromComponent(component))
+            .Where(config => config is not null)
+            .ToList();
+
+        var routables = components.Where(c =>
+            c.GetCustomAttributes(inherit: true).OfType<RouteAttribute>
+            ().ToArray().Count() > 0);
+
+        var component = components.FirstOrDefault(r => r.Name == "Counter");
+        var fields = component.GetRuntimeFields().Where(f => f.FieldType.ToString().Contains("DevExpress"));
+        foreach (var field in fields)
+        {
+            listPar.Add(field);
+            if (field.FieldType == typeof(DxFormLayout))
+            {
+                base_flDetil = (DxFormLayout)field.GetValue(this);
+            }
+            var a = field.Attributes;
+            var b = field.CustomAttributes;
+            var c = field.DeclaringType;
+            var d = field.FieldHandle;
+            var e = field.GetCustomAttributes();
+            var f = field.FieldType;
+            var g = field.GetCustomAttributesData();
+            var k = field.Name;
+        }
+
+        var x = new Counter();
+        var h = fl.ChildContent;
+        var h2 = h.Target.ToString();
+        var h3 = flg?.ChildContent;
+        var ab = h;
+    }
+    private static string GetRouteFromComponent(Type component)
+    {
+        var attributes = component.GetCustomAttributes(inherit: true);
+
+        var routeAttribute = attributes.OfType<RouteAttribute>().FirstOrDefault();
+
+        if (routeAttribute is null)
+        {
+            // Only map routable components
+            return null;
+        }
+
+        var route = routeAttribute.Template;
+
+        if (string.IsNullOrEmpty(route))
+        {
+            throw new Exception($"RouteAttribute in component '{component}' has empty route template");
+        }
+
+        // Doesn't support tokens yet
+        if (route.Contains('{'))
+        {
+            throw new Exception($"RouteAttribute for component '{component}' contains route values. Route values are invalid for prerendering");
+        }
+
+        return route;
     }
 }

@@ -7,20 +7,16 @@
 	base.BuildRenderTree(__builder);
 }
 @code {
-    protected override async void OnInitialized() {
-        var components = Assembly.GetExecutingAssembly().ExportedTypes.Where(t => t.IsSubclassOf(typeof(ComponentBase))).ToList().Where(c => c.Namespace.Contains("Pages"));
-
-        var component = components.FirstOrDefault(r => r.Name == "Counter");
-        pathForm = component;
-        var a = component.Attributes;
-        var b = component.GetMembers();
+    protected override void OnInitialized()
+    {
+        AssemblyProject = Assembly.GetExecutingAssembly();
         base.OnInitialized();
     }
-    public override void cbxCari_Enter(KeyboardEventArgs e)
+    public override void cbxCari_Enter(KeyboardEventArgs e) //Kebutuhan Trace
     {
         base.cbxCari_Enter(e);
     }
-    public override void cbxCari_OnInput(ChangeEventArgs e)
+    public override void cbxCari_OnInput(ChangeEventArgs e) //Kebutuhan Trace
     {
         base.cbxCari_OnInput(e);
     }

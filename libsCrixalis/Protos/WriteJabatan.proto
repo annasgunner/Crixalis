@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option csharp_namespace = "libsCrixalis.Protos";
+package ReadJabatanPackage;
+
+// Definisikan Jabatan service.
+service svpWriteJabatan {
+	rpc InsertJabatan (WriteJabatanRequest) returns (WriteJabatanReply);
+	rpc UpdateJabatan (WriteJabatanRequest) returns (WriteJabatanReply);
+	rpc DeleteJabatan (WriteJabatanByIdRequest) returns (WriteJabatanReply);
+}
+
+message WriteJabatanRequest {
+    string IdJabatan = 1;
+    optional string IdKategoriJadwalKerjaKaryawan = 2;
+    optional string Jabatan = 3;
+    optional string Kode = 4;
+    optional int32 Grade = 5;
+    optional string Keterangan = 6;
+}
+message WriteJabatanByIdRequest {
+  string IdJabatan = 1;
+}
+
+message WriteJabatanReply {
+	bool IsOK = 1;
+	string Result = 2;
+}

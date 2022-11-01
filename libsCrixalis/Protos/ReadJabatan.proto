@@ -1,0 +1,44 @@
+syntax = "proto3";
+
+option csharp_namespace = "libsCrixalis.Protos";
+package ReadJabatanPackage;
+
+// Definisikan Jabatan service.
+service svpReadJabatan {
+	rpc GetAllJabatan (ReadAllJabatanRequest) returns (ReadAllJabatanReply);
+	rpc GetJabatanById (ReadJabatanByIdRequest) returns (ReadJabatanReply);
+}
+
+message ReadAllJabatanRequest {
+}
+message ReadJabatanByIdRequest {
+  string IdJabatan = 1;
+}
+
+message ReadAllJabatanReply {
+  repeated ReadJabatanReply ReadJabatanReply = 1;
+}
+message ReadJabatanReply
+{
+    optional string IdJabatan = 1;
+    optional string IdKategoriJadwalKerjaKaryawan = 2;
+    optional string Jabatan = 3;
+    optional string Kode = 4;
+    optional int32 Grade = 5;
+    optional string Keterangan = 6;
+    optional string PKLink1 = 7;
+    optional string PKLink2 = 8;
+    optional bool IsDefault = 9;
+    optional bool IsRVisible = 10;
+    optional bool IsDVisible = 11;
+    optional string Tag = 12;
+    optional bool Status = 13;
+    optional string WaktuInsert = 14;
+    optional string WaktuUpdate = 15;
+    optional string IdLogHeader = 16;
+    optional string IdCreator = 17;
+    optional string IdOperator = 18;
+    optional string IdValidator = 19;
+    optional string State = 20;
+    optional string Synchronise = 21;
+}

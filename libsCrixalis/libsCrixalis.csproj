@@ -8,7 +8,9 @@
 
   <ItemGroup>
     <None Remove="Protos\LoginToken.proto" />
+    <None Remove="Protos\ReadJabatan.proto" />
     <None Remove="Protos\ReadKaryawan.proto" />
+    <None Remove="Protos\WriteJabatan.proto" />
     <None Remove="Protos\WriteKaryawan.proto" />
   </ItemGroup>
 
@@ -27,18 +29,20 @@
 
   <ItemGroup>
     <Protobuf Include="Protos\LoginToken.proto" />
+    <Protobuf Include="Protos\ReadJabatan.proto" />
     <Protobuf Include="Protos\ReadKaryawan.proto" />
+    <Protobuf Include="Protos\WriteJabatan.proto" />
     <Protobuf Include="Protos\WriteKaryawan.proto" />
   </ItemGroup>
 
   <ItemGroup>
-	<SupportedPlatform Include="browser"></SupportedPlatform>
+    <Reference Include="Pantheon">
+      <HintPath>..\..\..\..\#Fortis Central\DevOps\Pantheon\Pantheon\bin\Debug\net6.0\Pantheon.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Pantheon">
-      <HintPath>..\..\..\..\MyProject\MAUI\Pantheon\Pantheon\bin\Debug\net6.0\Pantheon.dll</HintPath>
-    </Reference>
+	<SupportedPlatform Include="browser"></SupportedPlatform>
   </ItemGroup>
 
 </Project>

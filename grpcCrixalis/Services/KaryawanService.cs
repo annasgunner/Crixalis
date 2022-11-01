@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using grpcCrixalis.Protos;
+using libsCrixalis.Protos;
 
 namespace grpcCrixalis.Services
 {
@@ -26,7 +26,7 @@ namespace grpcCrixalis.Services
         #region 'Views'
         public override async Task<ReadAllKaryawanReply> GetAllKaryawan(ReadAllKaryawanRequest request, ServerCallContext context)
         {
-            var listKaryawan = _db.T1KaryawanDbSet.AsEnumerable();
+            var listKaryawan = _db.T1Karyawan.AsEnumerable();
 
             ReadAllKaryawanReply hasil = new();
             hasil.ReadKaryawanReply.AddRange(listKaryawan.Adapt<IEnumerable<ReadKaryawanReply>>());
@@ -36,7 +36,7 @@ namespace grpcCrixalis.Services
 
         public override async Task<ReadKaryawanReply> GetKaryawanById(ReadKaryawanByIdRequest request, ServerCallContext context)
         {
-            var listKaryawan = _db.T1KaryawanDbSet
+            var listKaryawan = _db.T1Karyawan
                                   .Where(w => w.IdKaryawan == Guid.Parse(request.IdKaryawan))
                                   .Select(k => new
                                   {

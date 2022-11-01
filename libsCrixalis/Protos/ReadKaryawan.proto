@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option csharp_namespace = "grpcCrixalis.Protos";
+option csharp_namespace = "libsCrixalis.Protos";
 package ReadKaryawanPackage;
 
 // Definisikan Karyawan service.

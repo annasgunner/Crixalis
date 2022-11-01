@@ -12,16 +12,11 @@ namespace grpcCrixalis.Data
     {
         public CrixalisDbContext(DbContextOptions options) : base(options) { }
 
-        public DbSet<DbT1Karyawan> T1KaryawanDbSet { get; set; }
+        public DbSet<DbT0Jabatan> T0Jabatan { get; set; }
+        public DbSet<DbT1Karyawan> T1Karyawan { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //T1Karyawan
-            modelBuilder.Entity<DbT1Karyawan>(entity =>
-            {
-                entity.ToTable("T1Karyawan");
-                entity.HasKey(e => e.IdKaryawan);
-            });
         }
     }
 }

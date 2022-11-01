@@ -4,11 +4,11 @@ using grpcCrixalis.Data;
 
 namespace grpcCrixalis.Services
 {
-    public class svcForm : svpReadForm.svpReadFormBase
+    public class ssvForm : svpReadForm.svpReadFormBase
     {
-        private readonly ILogger<svcForm> _logger;
+        private readonly ILogger<ssvForm> _logger;
         private readonly IUnitOfWork _unitOfWork;
-        public svcForm(ILogger<svcForm> logger, IUnitOfWork unitOfWork)
+        public ssvForm(ILogger<ssvForm> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
@@ -18,7 +18,7 @@ namespace grpcCrixalis.Services
         {
             try
             {
-                var data = await _unitOfWork.RepoForm.CariDenganPredicate(f => f.Form != null || f.IdParent == 0);
+                var data = await _unitOfWork.RepoForm.CariDenganPredicate(f => (f.Form != null || f.IdParent == 0) && f.Status == true);
                 var reply = new rpfForm();
                 reply.DaftarForm.AddRange(data.Adapt<IEnumerable<proForm>>());
                 return reply;

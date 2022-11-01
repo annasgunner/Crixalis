@@ -26,10 +26,10 @@
       <HintPath>..\libsCrixalis\bin\Debug\net6.0\libsCrixalis.dll</HintPath>
     </Reference>
     <Reference Include="Pantheon">
-      <HintPath>..\..\Pantheon\Pantheon\bin\Debug\net6.0\Pantheon.dll</HintPath>
+      <HintPath>..\..\..\..\#Fortis Central\DevOps\Pantheon\Pantheon\bin\Debug\net6.0\Pantheon.dll</HintPath>
     </Reference>
     <Reference Include="rclPantheon">
-      <HintPath>..\..\Pantheon\rclPantheon\bin\Debug\net6.0\rclPantheon.dll</HintPath>
+      <HintPath>..\..\..\..\#Fortis Central\DevOps\Pantheon\rclPantheon\bin\Debug\net6.0\rclPantheon.dll</HintPath>
     </Reference>
   </ItemGroup>
 

@@ -73,11 +73,11 @@ if (!(!string.IsNullOrWhiteSpace(environment) && environment.Contains("Developme
         // Setup a HTTP/2 endpoint without TLS.
         options.ListenAnyIP(5050, o =>
         {
-            o.Protocols = HttpProtocols.Http2;
+            o.Protocols = HttpProtocols.Http1AndHttp2;
         });
-        options.ListenAnyIP(5001, o =>
+        options.ListenAnyIP(5021, o =>
         {
-            o.Protocols = HttpProtocols.Http2;
+            o.Protocols = HttpProtocols.Http1AndHttp2;
             o.UseHttps();
         });
     });
@@ -101,7 +101,9 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapGrpcService<LoginTokenService>().EnableGrpcWeb();
     endpoints.MapGrpcService<KaryawanService>().EnableGrpcWeb();
-    endpoints.MapGrpcService<svcForm>().EnableGrpcWeb();
+    endpoints.MapGrpcService<ssvForm>().EnableGrpcWeb();
+    endpoints.MapGrpcService<ssrJabatan>().EnableGrpcWeb();
+    endpoints.MapGrpcService<sswJabatan>().EnableGrpcWeb();
     // Configure the HTTP request pipeline.
     //endpoints.MapGet("/", () => "Communication with gRPC endpoints must be made through a gRPC client. To learn how to create a client, visit: https://go.microsoft.com/fwlink/?linkid=2086909");
 });

@@ -6,5 +6,6 @@ namespace grpcCrixalis.Data
     public interface IUnitOfWork : pthIUnitOfWork
     {
         IRepoForm RepoForm { get; }
+        IRepoJabatan RepoJabatan { get; }
     }
 }

@@ -35,11 +35,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="libsCrixalis">
-      <HintPath>..\libsCrixalis\bin\Debug\net6.0\libsCrixalis.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\libsCrixalis\libsCrixalis.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="Pantheon">
-      <HintPath>..\..\Pantheon\Pantheon\bin\Debug\net6.0\Pantheon.dll</HintPath>
+      <HintPath>..\..\..\..\#Fortis Central\DevOps\Pantheon\Pantheon\bin\Debug\net6.0\Pantheon.dll</HintPath>
     </Reference>
   </ItemGroup>
 
