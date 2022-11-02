@@ -1,21 +1,21 @@
 ﻿@using mbaCrixalis._1._Master
-@inherits ConMaster_1<uimT0Jabatan, csvJabatan>
+@inherits ConMaster_1<uimT0Jabatan, svcJabatan>
 
 @{
 	base.BuildRenderTree(__builder);
 	rfDetil = 
 	@<DxFormLayout>
 		<DxFormLayoutItem Caption="Jabatan" ColSpanMd="12">
-			<DxTextBox @ref="txbJabatan" @bind-Text="@DsRekapitulasiDipilih.Jabatan" />
+			<DxTextBox @ref="txbJabatan" @bind-Text="@DsRekapitulasiDipilih.Jabatan" tabindex="1"/>
 		</DxFormLayoutItem>
 		<DxFormLayoutItem Caption="Kode" ColSpanMd="12">
-			<DxTextBox @ref="txbKode" @bind-Text="@DsRekapitulasiDipilih.Kode" />
+			<DxTextBox @ref="txbKode" @bind-Text="@DsRekapitulasiDipilih.Kode" tabindex="2" />
 		</DxFormLayoutItem>
 		<DxFormLayoutItem Caption="Grade" ColSpanMd="12">
-			<DxSpinEdit @ref="speGrade" @bind-Value="@DsRekapitulasiDipilih.Grade" />
+			<DxSpinEdit @ref="speGrade" @bind-Value="@DsRekapitulasiDipilih.Grade" tabindex="3" />
 		</DxFormLayoutItem>
 		<DxFormLayoutItem Caption="Keterangan" ColSpanMd="12">
-			<DxTextBox @ref="txbKeterangan" @bind-Text="@DsRekapitulasiDipilih.Keterangan" />
+			<DxTextBox @ref="txbKeterangan" @bind-Text="@DsRekapitulasiDipilih.Keterangan" tabindex="4" />
 		</DxFormLayoutItem>
 	</DxFormLayout>;
 }
@@ -27,24 +27,41 @@
 
 	protected override void OnInitialized()
 	{
-		IdForm = 20100010;
 		base.OnInitialized();
 	}
 	protected override void OnAfterRender(bool firstRender)
 	{
 		base.OnAfterRender(firstRender);
 	}
+	#region Rekapitulasi
 	public override void ProsesPerbarui_Rekapitulasi()
 	{
 		base.ProsesPerbarui_Rekapitulasi();
+		var a = DsRekapitulasi;
+		var b = DsRekapitulasiDipilih; //Kebutuhan trace
 	}
 
 	public override void ProsesSeleksiData(object data)
 	{
 		base.ProsesSeleksiData(data);
 	}
+	#endregion
+
+	#region Detil
 	public override void ProsesMuat_Detil()
 	{
 		base.ProsesMuat_Detil();
+		var a = fiDetil; //Kebutuhan trace
 	}
+	#endregion
+	#region Navigasi
+	public override void cmsNavigasi_Click(ContextMenuItemClickEventArgs args)
+	{
+		base.cmsNavigasi_Click(args);
+	}
+	public override void Try_ProsesUpdateDatabase()
+	{
+		base.Try_ProsesUpdateDatabase();
+	}
+	#endregion
 }

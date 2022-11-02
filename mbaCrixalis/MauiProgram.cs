@@ -28,7 +28,7 @@ public static class MauiProgram
 #endif
 
         builder.Services.AddSingleton<csvForm>();
-        builder.Services.AddSingleton<csvJabatan>();
+        builder.Services.AddSingleton<svcJabatan>();
         //builder.Services.AddSingleton<pthSignalRService>();
         builder.Services.AddScoped<DialogService>();
         builder.Services.AddScoped<NotificationService>();

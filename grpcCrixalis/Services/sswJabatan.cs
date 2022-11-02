@@ -5,6 +5,7 @@ using libsCrixalis.Protos;
 using System.Net;
 using libsCrixalis.Master;
 using static SQLite.SQLite3;
+using System.Runtime.Intrinsics.X86;
 
 namespace grpcCrixalis.Services;
 public class sswJabatan : svpWriteJabatan.svpWriteJabatanBase
@@ -21,7 +22,21 @@ public class sswJabatan : svpWriteJabatan.svpWriteJabatanBase
     {
         try
         {
-            _unitOfWork.RepoJabatan.Insert(request.Adapt<DbT0Jabatan>());
+            var t0Jabatan = request.Adapt<DbT0Jabatan>();
+            t0Jabatan.PKLink1 = "";
+            t0Jabatan.PKLink2 = "";
+            t0Jabatan.IsDefault = false;
+            t0Jabatan.IsRVisible = true;
+            t0Jabatan.IsDVisible = true;
+            t0Jabatan.Tag = "";
+            t0Jabatan.Status = true;
+            t0Jabatan.WaktuInsert = DateTimeOffset.Now;
+            t0Jabatan.IdCreator = Guid.Parse(request.IdCreator);
+            t0Jabatan.State = "";
+            t0Jabatan.Synchronise = "inserted";
+
+            _unitOfWork.RepoJabatan.Insert(t0Jabatan);
+            await _unitOfWork.Selesai();
             return new WriteJabatanReply() { IsOK = true, Result = "Berhasil Simpan" };
         }
         catch (RpcException ex)
@@ -38,7 +53,24 @@ public class sswJabatan : svpWriteJabatan.svpWriteJabatanBase
     {
         try
         {
-            _unitOfWork.RepoJabatan.Update(request.Adapt<DbT0Jabatan>());
+            //DbT0Jabatan t0Jabatan;
+            var DbT0Jabatan = _unitOfWork.RepoJabatan.GetById(request.IdJabatan);
+            if (DbT0Jabatan is not null)
+            {
+                DbT0Jabatan.Result.Jabatan = request.Jabatan;
+                DbT0Jabatan.Result.Kode = request.Kode;
+                DbT0Jabatan.Result.Grade = request.Grade;
+                DbT0Jabatan.Result.Keterangan = request.Keterangan;
+                DbT0Jabatan.Result.WaktuUpdate = DateTimeOffset.Now;
+                //Guid.TryParse(request.IdOperator, out var idOperator);
+                //t0Jabatan.IdOperator = idOperator;
+                //Guid.TryParse(request.IdOperator, out var idValidator);
+                //t0Jabatan.IdValidator = idValidator;
+                DbT0Jabatan.Result.Synchronise = "updated";
+
+                //_unitOfWork.RepoJabatan.Update(DbT0Jabatan);
+                await _unitOfWork.Selesai();
+            }
             return new WriteJabatanReply() { IsOK = true, Result = "Berhasil Simpan" };
         }
         catch (RpcException ex)
@@ -56,6 +88,7 @@ public class sswJabatan : svpWriteJabatan.svpWriteJabatanBase
         try
         {
             _unitOfWork.RepoJabatan.Delete(request.Adapt<DbT0Jabatan>());
+            await _unitOfWork.Selesai();
             return new WriteJabatanReply() { IsOK = true, Result = "Berhasil Hapus" };
         }
         catch (RpcException ex)
